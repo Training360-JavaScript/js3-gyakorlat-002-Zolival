@@ -21,13 +21,11 @@ const cookieHandler = {
             const [zero, one] = item.split('=')
             return [zero.trim(), one.trim()]
         });
-        //console.log(`getAll() cookies = `, Object.fromEntries(cookies) );
         return Object.fromEntries(cookies);
     },
 
     toSessionStorage(){
         const cookies = this.getAll();
-        console.log(`toSessionStorage = `, cookies )
         for(let key in cookies){
             sessionStorage.setItem(key, cookies[key])
         }
@@ -38,7 +36,6 @@ const cookieHandler = {
         const cookies = document.cookie.split(`; `)
         .forEach((item) => {
             const txt = `${item.split("=")[0]}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`
-            console.log(`flush = `, txt)
             document.cookie = txt
             return txt
         })
